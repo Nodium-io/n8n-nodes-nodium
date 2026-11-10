@@ -1,0 +1,57 @@
+{
+  "name": "@nodium.io/n8n-nodes-nodium",
+  "version": "0.1.0",
+  "description": "n8n nodes for Nodium, the WhatsApp API gateway: send WhatsApp messages and templates, read conversations, and start workflows on incoming messages, with signed webhooks.",
+  "keywords": [
+    "n8n-community-node-package",
+    "n8n",
+    "nodium",
+    "whatsapp",
+    "whatsapp-api",
+    "whatsapp-cloud-api"
+  ],
+  "license": "MIT",
+  "homepage": "https://nodium.io/en/guides/whatsapp-api-n8n",
+  "author": "By-Tech.io",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nodium-io/n8n-nodes-nodium.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nodium-io/n8n-nodes-nodium/issues"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "main": "index.js",
+  "files": [
+    "dist",
+    "index.js"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc && node -e \"for (const n of ['Nodium','NodiumTrigger']) require('fs').copyFileSync('nodes/'+n+'/nodium.svg','dist/nodes/'+n+'/nodium.svg')\"",
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "npm run build"
+  },
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "credentials": [
+      "dist/credentials/NodiumApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/Nodium/Nodium.node.js",
+      "dist/nodes/NodiumTrigger/NodiumTrigger.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "n8n-workflow": "^2.16.0",
+    "typescript": "^5.9.2"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  }
+}
